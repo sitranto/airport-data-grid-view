@@ -6,5 +6,10 @@ namespace AirportDataGridView
         {
             InitializeComponent();
         }
+
+        private void OnAddEntry(object? sender, EventArgs e)
+        {
+
+        }
     }
 }
