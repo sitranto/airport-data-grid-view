@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             textBoxFlightNum = new TextBox();
             comboBoxPlaneType = new ComboBox();
             textBoxArrive = new TextBox();
@@ -45,6 +46,8 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
+            errorProvider = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // textBoxFlightNum
@@ -112,6 +115,7 @@
             button.TabIndex = 8;
             button.Text = "Добавить";
             button.UseVisualStyleBackColor = true;
+            button.Click += OnButtonClick;
             // 
             // label1
             // 
@@ -185,6 +189,11 @@
             label8.TabIndex = 16;
             label8.Text = "Процент надбавки за обслуживание";
             // 
+            // errorProvider
+            // 
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            errorProvider.ContainerControl = this;
+            // 
             // EntryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -209,6 +218,7 @@
             Controls.Add(textBoxFlightNum);
             Name = "EntryForm";
             Text = "Добавить";
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,5 +242,6 @@
         private Label label6;
         private Label label7;
         private Label label8;
+        private ErrorProvider errorProvider;
     }
 }

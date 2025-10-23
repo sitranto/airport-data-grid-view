@@ -80,6 +80,7 @@
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             deleteToolStripMenuItem.Size = new Size(63, 20);
             deleteToolStripMenuItem.Text = "Удалить";
+            deleteToolStripMenuItem.Click += OnDeleteEntry;
             // 
             // statusStrip
             // 
@@ -116,59 +117,72 @@
             // 
             // dataGridView
             // 
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
             dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { ColumnFlightNum, ColumnPlaneType, ColumnArrive, ColumnPassengersAmount, ColumnPassengerFee, ColumnCrewAmount, ColumnCrewFee, ColumnMarkup, ColumnRevenue });
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.Location = new Point(0, 24);
             dataGridView.Name = "dataGridView";
+            dataGridView.ReadOnly = true;
             dataGridView.Size = new Size(941, 404);
             dataGridView.TabIndex = 2;
+            dataGridView.CellFormatting += OnCellFormatting;
             // 
             // ColumnFlightNum
             // 
             ColumnFlightNum.HeaderText = "Номер рейса";
             ColumnFlightNum.Name = "ColumnFlightNum";
+            ColumnFlightNum.ReadOnly = true;
             // 
             // ColumnPlaneType
             // 
             ColumnPlaneType.HeaderText = "Тип самолета";
             ColumnPlaneType.Name = "ColumnPlaneType";
+            ColumnPlaneType.ReadOnly = true;
             // 
             // ColumnArrive
             // 
             ColumnArrive.HeaderText = "Время прибытия";
             ColumnArrive.Name = "ColumnArrive";
+            ColumnArrive.ReadOnly = true;
             // 
             // ColumnPassengersAmount
             // 
             ColumnPassengersAmount.HeaderText = "Количество пассажиров";
             ColumnPassengersAmount.Name = "ColumnPassengersAmount";
+            ColumnPassengersAmount.ReadOnly = true;
             // 
             // ColumnPassengerFee
             // 
             ColumnPassengerFee.HeaderText = "Сбор на пассажира";
             ColumnPassengerFee.Name = "ColumnPassengerFee";
+            ColumnPassengerFee.ReadOnly = true;
             // 
             // ColumnCrewAmount
             // 
             ColumnCrewAmount.HeaderText = "Количество экипажа";
             ColumnCrewAmount.Name = "ColumnCrewAmount";
+            ColumnCrewAmount.ReadOnly = true;
             // 
             // ColumnCrewFee
             // 
             ColumnCrewFee.HeaderText = "Сбор на экипаж";
             ColumnCrewFee.Name = "ColumnCrewFee";
+            ColumnCrewFee.ReadOnly = true;
             // 
             // ColumnMarkup
             // 
             ColumnMarkup.HeaderText = "Процент надбавки за обслуживание";
             ColumnMarkup.Name = "ColumnMarkup";
+            ColumnMarkup.ReadOnly = true;
             // 
             // ColumnRevenue
             // 
             ColumnRevenue.HeaderText = "Выручка";
             ColumnRevenue.Name = "ColumnRevenue";
+            ColumnRevenue.ReadOnly = true;
             // 
             // MainForm
             // 

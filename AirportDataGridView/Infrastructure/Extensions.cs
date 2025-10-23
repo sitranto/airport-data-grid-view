@@ -2,8 +2,12 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace AirportDataGridView.Infrastructure
-{
+namespace AirportDataGridView.Infrastructure 
+{ 
+
+    /// <summary>
+    /// Класс с методами расширения.
+    /// </summary>
     public static class Extensions
     {
         /// <summary>
@@ -20,8 +24,8 @@ namespace AirportDataGridView.Infrastructure
         /// <param name="errorProvider">Провайдер отображения ошибок.</param>
         public static void AddBinding<TControl, TSource>(
             this TControl control,
-            TSource source,
             Expression<Func<TControl,object>> destinationProperty,
+            TSource source,
             Expression<Func<TSource,object>> sourceProperty,
             ErrorProvider? errorProvider = null
             )
