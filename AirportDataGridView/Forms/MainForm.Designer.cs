@@ -34,10 +34,19 @@
             deleteToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             toolStripStatusLabelArriving = new ToolStripStatusLabel();
-            dataGridView = new DataGridView();
             toolStripStatusLabelPassengers = new ToolStripStatusLabel();
             toolStripStatusLabelCrew = new ToolStripStatusLabel();
             toolStripStatusLabelRevenue = new ToolStripStatusLabel();
+            dataGridView = new DataGridView();
+            ColumnFlightNum = new DataGridViewTextBoxColumn();
+            ColumnPlaneType = new DataGridViewTextBoxColumn();
+            ColumnArrive = new DataGridViewTextBoxColumn();
+            ColumnPassengersAmount = new DataGridViewTextBoxColumn();
+            ColumnPassengerFee = new DataGridViewTextBoxColumn();
+            ColumnCrewAmount = new DataGridViewTextBoxColumn();
+            ColumnCrewFee = new DataGridViewTextBoxColumn();
+            ColumnMarkup = new DataGridViewTextBoxColumn();
+            ColumnRevenue = new DataGridViewTextBoxColumn();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -48,7 +57,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem, changeToolStripMenuItem, deleteToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(800, 24);
+            menuStrip.Size = new Size(941, 24);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip1";
             // 
@@ -57,12 +66,14 @@
             addToolStripMenuItem.Name = "addToolStripMenuItem";
             addToolStripMenuItem.Size = new Size(71, 20);
             addToolStripMenuItem.Text = "Добавить";
+            addToolStripMenuItem.Click += OnAddEntry;
             // 
             // changeToolStripMenuItem
             // 
             changeToolStripMenuItem.Name = "changeToolStripMenuItem";
             changeToolStripMenuItem.Size = new Size(73, 20);
             changeToolStripMenuItem.Text = "Изменить";
+            changeToolStripMenuItem.Click += OnChangeEntry;
             // 
             // deleteToolStripMenuItem
             // 
@@ -75,7 +86,7 @@
             statusStrip.Items.AddRange(new ToolStripItem[] { toolStripStatusLabelArriving, toolStripStatusLabelPassengers, toolStripStatusLabelCrew, toolStripStatusLabelRevenue });
             statusStrip.Location = new Point(0, 428);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new Size(800, 22);
+            statusStrip.Size = new Size(941, 22);
             statusStrip.TabIndex = 1;
             statusStrip.Text = "statusStrip1";
             // 
@@ -84,16 +95,6 @@
             toolStripStatusLabelArriving.Name = "toolStripStatusLabelArriving";
             toolStripStatusLabelArriving.Size = new Size(76, 17);
             toolStripStatusLabelArriving.Text = "Прибывают:";
-            // 
-            // dataGridView
-            // 
-            dataGridView.BorderStyle = BorderStyle.None;
-            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Dock = DockStyle.Fill;
-            dataGridView.Location = new Point(0, 24);
-            dataGridView.Name = "dataGridView";
-            dataGridView.Size = new Size(800, 404);
-            dataGridView.TabIndex = 2;
             // 
             // toolStripStatusLabelPassengers
             // 
@@ -113,11 +114,67 @@
             toolStripStatusLabelRevenue.Size = new Size(58, 17);
             toolStripStatusLabelRevenue.Text = "Выручка:";
             // 
+            // dataGridView
+            // 
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { ColumnFlightNum, ColumnPlaneType, ColumnArrive, ColumnPassengersAmount, ColumnPassengerFee, ColumnCrewAmount, ColumnCrewFee, ColumnMarkup, ColumnRevenue });
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.Location = new Point(0, 24);
+            dataGridView.Name = "dataGridView";
+            dataGridView.Size = new Size(941, 404);
+            dataGridView.TabIndex = 2;
+            // 
+            // ColumnFlightNum
+            // 
+            ColumnFlightNum.HeaderText = "Номер рейса";
+            ColumnFlightNum.Name = "ColumnFlightNum";
+            // 
+            // ColumnPlaneType
+            // 
+            ColumnPlaneType.HeaderText = "Тип самолета";
+            ColumnPlaneType.Name = "ColumnPlaneType";
+            // 
+            // ColumnArrive
+            // 
+            ColumnArrive.HeaderText = "Время прибытия";
+            ColumnArrive.Name = "ColumnArrive";
+            // 
+            // ColumnPassengersAmount
+            // 
+            ColumnPassengersAmount.HeaderText = "Количество пассажиров";
+            ColumnPassengersAmount.Name = "ColumnPassengersAmount";
+            // 
+            // ColumnPassengerFee
+            // 
+            ColumnPassengerFee.HeaderText = "Сбор на пассажира";
+            ColumnPassengerFee.Name = "ColumnPassengerFee";
+            // 
+            // ColumnCrewAmount
+            // 
+            ColumnCrewAmount.HeaderText = "Количество экипажа";
+            ColumnCrewAmount.Name = "ColumnCrewAmount";
+            // 
+            // ColumnCrewFee
+            // 
+            ColumnCrewFee.HeaderText = "Сбор на экипаж";
+            ColumnCrewFee.Name = "ColumnCrewFee";
+            // 
+            // ColumnMarkup
+            // 
+            ColumnMarkup.HeaderText = "Процент надбавки за обслуживание";
+            ColumnMarkup.Name = "ColumnMarkup";
+            // 
+            // ColumnRevenue
+            // 
+            ColumnRevenue.HeaderText = "Выручка";
+            ColumnRevenue.Name = "ColumnRevenue";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(941, 450);
             Controls.Add(dataGridView);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
@@ -145,5 +202,14 @@
         private ToolStripStatusLabel toolStripStatusLabelPassengers;
         private ToolStripStatusLabel toolStripStatusLabelCrew;
         private ToolStripStatusLabel toolStripStatusLabelRevenue;
+        private DataGridViewTextBoxColumn ColumnFlightNum;
+        private DataGridViewTextBoxColumn ColumnPlaneType;
+        private DataGridViewTextBoxColumn ColumnArrive;
+        private DataGridViewTextBoxColumn ColumnPassengersAmount;
+        private DataGridViewTextBoxColumn ColumnPassengerFee;
+        private DataGridViewTextBoxColumn ColumnCrewAmount;
+        private DataGridViewTextBoxColumn ColumnCrewFee;
+        private DataGridViewTextBoxColumn ColumnMarkup;
+        private DataGridViewTextBoxColumn ColumnRevenue;
     }
 }

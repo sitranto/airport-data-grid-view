@@ -32,9 +32,9 @@
             comboBoxPlaneType = new ComboBox();
             textBoxArrive = new TextBox();
             textBoxPassengersAmount = new TextBox();
-            textBoxPassengersFue = new TextBox();
+            textBoxPassengersFee = new TextBox();
             textBoxCrewAmount = new TextBox();
-            textBoxCrewFue = new TextBox();
+            textBoxCrewFee = new TextBox();
             textBoxMarkup = new TextBox();
             button = new Button();
             label1 = new Label();
@@ -76,12 +76,12 @@
             textBoxPassengersAmount.Size = new Size(121, 23);
             textBoxPassengersAmount.TabIndex = 3;
             // 
-            // textBoxPassengersFue
+            // textBoxPassengersFee
             // 
-            textBoxPassengersFue.Location = new Point(333, 112);
-            textBoxPassengersFue.Name = "textBoxPassengersFue";
-            textBoxPassengersFue.Size = new Size(121, 23);
-            textBoxPassengersFue.TabIndex = 4;
+            textBoxPassengersFee.Location = new Point(333, 112);
+            textBoxPassengersFee.Name = "textBoxPassengersFee";
+            textBoxPassengersFee.Size = new Size(121, 23);
+            textBoxPassengersFee.TabIndex = 4;
             // 
             // textBoxCrewAmount
             // 
@@ -90,12 +90,12 @@
             textBoxCrewAmount.Size = new Size(121, 23);
             textBoxCrewAmount.TabIndex = 5;
             // 
-            // textBoxCrewFue
+            // textBoxCrewFee
             // 
-            textBoxCrewFue.Location = new Point(333, 198);
-            textBoxCrewFue.Name = "textBoxCrewFue";
-            textBoxCrewFue.Size = new Size(121, 23);
-            textBoxCrewFue.TabIndex = 6;
+            textBoxCrewFee.Location = new Point(333, 198);
+            textBoxCrewFee.Name = "textBoxCrewFee";
+            textBoxCrewFee.Size = new Size(121, 23);
+            textBoxCrewFee.TabIndex = 6;
             // 
             // textBoxMarkup
             // 
@@ -185,7 +185,7 @@
             label8.TabIndex = 16;
             label8.Text = "Процент надбавки за обслуживание";
             // 
-            // AddEntryForm
+            // EntryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -200,14 +200,14 @@
             Controls.Add(label1);
             Controls.Add(button);
             Controls.Add(textBoxMarkup);
-            Controls.Add(textBoxCrewFue);
+            Controls.Add(textBoxCrewFee);
             Controls.Add(textBoxCrewAmount);
-            Controls.Add(textBoxPassengersFue);
+            Controls.Add(textBoxPassengersFee);
             Controls.Add(textBoxPassengersAmount);
             Controls.Add(textBoxArrive);
             Controls.Add(comboBoxPlaneType);
             Controls.Add(textBoxFlightNum);
-            Name = "AddEntryForm";
+            Name = "EntryForm";
             Text = "Добавить";
             ResumeLayout(false);
             PerformLayout();
@@ -219,9 +219,9 @@
         private ComboBox comboBoxPlaneType;
         private TextBox textBoxArrive;
         private TextBox textBoxPassengersAmount;
-        private TextBox textBoxPassengersFue;
+        private TextBox textBoxPassengersFee;
         private TextBox textBoxCrewAmount;
-        private TextBox textBoxCrewFue;
+        private TextBox textBoxCrewFee;
         private TextBox textBoxMarkup;
         private Button button;
         private Label label1;
