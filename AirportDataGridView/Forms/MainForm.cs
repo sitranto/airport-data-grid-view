@@ -99,6 +99,7 @@ namespace AirportDataGridView
             var selectedEntry = entries[dataGridView.SelectedRows[0].Index];
             var entryForm = new EntryForm(selectedEntry);
             entryForm.ShowDialog();
+            OnUpdate();
         }
 
         private void OnDeleteEntry(object? sender, EventArgs e)
