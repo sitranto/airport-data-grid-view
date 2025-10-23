@@ -1,10 +1,10 @@
-using AirportDataGridView.Forms;
+п»їusing AirportDataGridView.Forms;
 using AirportDataGridView.Models;
 
 namespace AirportDataGridView
 {
     /// <summary>
-    /// Класс основной формы приложения.
+    /// РљР»Р°СЃСЃ РѕСЃРЅРѕРІРЅРѕР№ С„РѕСЂРјС‹ РїСЂРёР»РѕР¶РµРЅРёСЏ.
     /// </summary>
     public partial class MainForm : Form
     {
@@ -12,7 +12,7 @@ namespace AirportDataGridView
         private readonly BindingSource bindingSource = new BindingSource();
 
         /// <summary>
-        /// Конструктор для <see cref="MainForm"/>
+        /// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ <see cref="MainForm"/>
         /// </summary>
         public MainForm()
         {
@@ -119,10 +119,10 @@ namespace AirportDataGridView
             var allCrew = entries.Sum(x => x.CrewAmount);
             var allRevenue = entries.Sum(x => x.Revenue);
 
-            toolStripStatusLabelArriving.Text = $"Прибывают: {arrivingFlights}";
-            toolStripStatusLabelPassengers.Text = $"Пассажиры: {allPassengers}";
-            toolStripStatusLabelCrew.Text = $"Экипаж: {allCrew}";
-            toolStripStatusLabelRevenue.Text = $"Выручка: {allRevenue}";
+            toolStripStatusLabelArriving.Text = $"РџСЂРёР±С‹РІР°СЋС‚: {arrivingFlights}";
+            toolStripStatusLabelPassengers.Text = $"РџР°СЃСЃР°Р¶РёСЂС‹: {allPassengers}";
+            toolStripStatusLabelCrew.Text = $"Р­РєРёРїР°Р¶: {allCrew}";
+            toolStripStatusLabelRevenue.Text = $"Р’С‹СЂСѓС‡РєР°: {allRevenue}";
         }
 
         private void OnUpdate()
@@ -135,7 +135,7 @@ namespace AirportDataGridView
         {
             if (dataGridView.SelectedRows.Count != 1)
             {
-                MessageBox.Show("Выберите одну запись", "Ошибка", MessageBoxButtons.OK);
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ РѕРґРЅСѓ Р·Р°РїРёСЃСЊ", "РћС€РёР±РєР°", MessageBoxButtons.OK);
                 return false;
             }
 
