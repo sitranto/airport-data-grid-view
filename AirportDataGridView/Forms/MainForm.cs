@@ -67,7 +67,6 @@ namespace AirportDataGridView
             ColumnCrewAmount.DataPropertyName = nameof(Entry.CrewAmount);
             ColumnCrewFee.DataPropertyName = nameof(Entry.CrewFee);
             ColumnMarkup.DataPropertyName = nameof(Entry.Markup);
-            ColumnRevenue.DataPropertyName = nameof(Entry.Revenue);
 
             CountStatistics();
         }
@@ -77,6 +76,15 @@ namespace AirportDataGridView
             if (e.Value is DateTime date)
             {
                 e.Value = date.ToString("dd.MM.yyyy HH:mm");
+            }
+
+            var col = dataGridView.Columns[e.ColumnIndex];
+
+            if (col == ColumnRevenue)
+            {
+                var entry = (Entry)dataGridView.Rows[e.RowIndex].DataBoundItem;
+                var result = (entry.PassengersAmount * entry.PassengersFee + entry.CrewAmount * entry.CrewFee);
+                e.Value = result * (entry.Markup / 100) + result; // Добавление процента надбавки
             }
         }
 
@@ -118,7 +126,11 @@ namespace AirportDataGridView
             var arrivingFlights = entries.Count;
             var allPassengers = entries.Sum(x => x.PassengersAmount);
             var allCrew = entries.Sum(x => x.CrewAmount);
-            var allRevenue = entries.Sum(x => x.Revenue);
+            var allRevenue = entries.Sum(x =>
+            {
+                var result = (x.PassengersAmount * x.PassengersFee + x.CrewAmount * x.CrewFee);
+                return result * (x.Markup / 100) + result; // Добавление процента надбавки
+            });
 
             toolStripStatusLabelArriving.Text = $"Прибывают: {arrivingFlights}";
             toolStripStatusLabelPassengers.Text = $"Пассажиры: {allPassengers}";

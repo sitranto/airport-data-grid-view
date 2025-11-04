@@ -14,7 +14,7 @@ namespace AirportDataGridView.Forms
         /// <summary>
         /// Конструктор для класса <see cref="EntryForm"/>
         /// </summary>
-        /// <param name="sourceEntry"></param>
+        /// <param name="sourceEntry">Исходная запись для операции изменения</param>
         public EntryForm(Entry? sourceEntry = null)
         {
             InitializeComponent();

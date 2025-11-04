@@ -66,16 +66,5 @@ namespace AirportDataGridView.Models
         [Range(Constants.MarkupMinValue, Constants.MarkupMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public float Markup { get; set; }
 
-        /// <summary>
-        /// Вычисляемое свойство выручки
-        /// </summary>
-        public float Revenue
-        {
-            get
-            {
-                var result = (PassengersAmount * PassengersFee + CrewAmount * CrewFee);
-                return result * (Markup / 100) + result; // Добавление процента надбавки
-            }
-        }
     }
 }
