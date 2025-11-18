@@ -65,7 +65,7 @@ namespace AirportDataGridView.Infrastructure
                         errorProvider.SetError(control, string.Empty);
 
                         var propertyValue = sourcePropertyInfo?.GetValue(source);
-                        bool isValid = Validator.TryValidateProperty(propertyValue, context, results);
+                        var isValid = Validator.TryValidateProperty(propertyValue, context, results);
 
                         if (!isValid) 
                         { 

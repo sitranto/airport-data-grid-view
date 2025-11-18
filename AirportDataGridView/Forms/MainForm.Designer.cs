@@ -1,4 +1,4 @@
-﻿namespace AirportDataGridView
+﻿namespace AirportDataGridView.Forms
 {
     partial class MainForm
     {

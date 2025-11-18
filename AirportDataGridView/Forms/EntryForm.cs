@@ -12,6 +12,11 @@ namespace AirportDataGridView.Forms
         private readonly Entry entry;
 
         /// <summary>
+        /// Свойство записи
+        /// </summary>
+        public Entry ResultEntry => entry;
+
+        /// <summary>
         /// Конструктор для класса <see cref="EntryForm"/>
         /// </summary>
         /// <param name="sourceEntry">Исходная запись для операции изменения</param>
@@ -41,11 +46,6 @@ namespace AirportDataGridView.Forms
             textBoxCrewFee.AddBinding(x => x.Text, entry, x => x.CrewFee, errorProvider);
             textBoxMarkup.AddBinding(x => x.Text, entry, x => x.Markup, errorProvider);
         }
-
-        /// <summary>
-        /// Свойство записи
-        /// </summary>
-        public Entry ResultEntry => entry;
 
         private void OnButtonClick(object? sender, EventArgs e)
         {

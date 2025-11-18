@@ -18,6 +18,6 @@
         /// <summary>
         /// Модель самолета OAK
         /// </summary>
-        OAK
+        Oak,
     }
 }

@@ -1,7 +1,6 @@
-﻿using AirportDataGridView.Forms;
-using AirportDataGridView.Models;
+﻿using AirportDataGridView.Models;
 
-namespace AirportDataGridView
+namespace AirportDataGridView.Forms
 {
     /// <summary>
     /// Класс основной формы приложения.
@@ -45,7 +44,7 @@ namespace AirportDataGridView
                     new Entry
                     {
                         FlightNum = 1,
-                        PlaneType = PlaneType.OAK,
+                        PlaneType = PlaneType.Oak,
                         Arrive = DateTime.Now.AddDays(4),
                         PassengersAmount = 30,
                         PassengersFee = 7,
