@@ -1,9 +1,9 @@
-using AirportDataGridView.Forms;
+п»їusing AirportDataGridView.Forms;
 
 namespace AirportDataGridView
 {
     /// <summary>
-    /// Класс программы
+    /// РљР»Р°СЃСЃ РїСЂРѕРіСЂР°РјРјС‹
         /// </summary>
     internal static class Program
     {
