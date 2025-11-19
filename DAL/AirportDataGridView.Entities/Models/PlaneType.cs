@@ -1,4 +1,4 @@
-﻿namespace AirportDataGridView.App.Models
+﻿namespace AirportDataGridView.Entities.Models
 {
     /// <summary>
     /// Тип самолета

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\AirportDataGridView.Constants\AirportDataGridView.Constants.csproj" />
+  </ItemGroup>
+
 </Project>

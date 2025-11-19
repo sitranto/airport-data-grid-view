@@ -1,4 +1,4 @@
-﻿using AirportDataGridView.App.Models;
+﻿using AirportDataGridView.Entities.Models;
 
 namespace AirportDataGridView.App.UI
 {

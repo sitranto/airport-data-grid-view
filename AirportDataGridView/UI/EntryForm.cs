@@ -1,5 +1,5 @@
 ﻿using AirportDataGridView.Infrastructure;
-using AirportDataGridView.App.Models;
+using AirportDataGridView.Entities.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace AirportDataGridView.App.UI

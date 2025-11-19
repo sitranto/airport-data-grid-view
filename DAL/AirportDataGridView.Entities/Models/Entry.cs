@@ -1,7 +1,7 @@
 ﻿using AirportDataGridView.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace AirportDataGridView.App.Models
+namespace AirportDataGridView.Entities.Models
 {
     /// <summary>
     /// Класс модели записи
