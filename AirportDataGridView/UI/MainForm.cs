@@ -1,4 +1,6 @@
 ﻿using AirportDataGridView.Entities.Models;
+using AirportDataGridView.EntityManager;
+using AirportDataGridView.Services.Contracts;
 
 namespace AirportDataGridView.App.UI
 {
@@ -7,66 +9,18 @@ namespace AirportDataGridView.App.UI
     /// </summary>
     public partial class MainForm : Form
     {
-        private readonly List<Entry> entries = []; 
-        private readonly BindingSource bindingSource = new BindingSource();
+        private readonly PlaneManager planeManager;
+        private readonly CancellationTokenSource cancellationTokenSource = new();
+        private readonly BindingSource bindingSource = [];
 
         /// <summary>
         /// Конструктор для <see cref="MainForm"/>
         /// </summary>
-        public MainForm()
+        /// <param name="storage">Хранилище полетов</param>
+        public MainForm(IStorage<Plane> storage)
         {
             InitializeComponent();
-
-            entries = 
-                [
-                    new Entry 
-                    {
-                        FlightNum = 1,
-                        PlaneType = PlaneType.Boing,
-                        Arrive = DateTime.Now.AddDays(2),
-                        PassengersAmount = 10,
-                        PassengersFee = 5,
-                        CrewAmount = 3,
-                        CrewFee = 10,
-                        Markup = 15
-                    },
-                    new Entry
-                    {
-                        FlightNum = 2,
-                        PlaneType = PlaneType.Airbus,
-                        Arrive = DateTime.Now.AddDays(3),
-                        PassengersAmount = 20,
-                        PassengersFee = 6,
-                        CrewAmount = 4,
-                        CrewFee = 15,
-                        Markup = 20
-                    },
-                    new Entry
-                    {
-                        FlightNum = 1,
-                        PlaneType = PlaneType.Oak,
-                        Arrive = DateTime.Now.AddDays(4),
-                        PassengersAmount = 30,
-                        PassengersFee = 7,
-                        CrewAmount = 5,
-                        CrewFee = 20,
-                        Markup = 25
-                    },
-                ];
-            dataGridView.AutoGenerateColumns = false;
-
-            bindingSource.DataSource = entries;
-            dataGridView.DataSource = bindingSource;
-
-            ColumnFlightNum.DataPropertyName = nameof(Entry.FlightNum);
-            ColumnPlaneType.DataPropertyName = nameof(Entry.PlaneType);
-            ColumnArrive.DataPropertyName = nameof(Entry.Arrive);
-            ColumnPassengersAmount.DataPropertyName = nameof(Entry.PassengersAmount);
-            ColumnPassengerFee.DataPropertyName = nameof(Entry.PassengersFee);
-            ColumnCrewAmount.DataPropertyName = nameof(Entry.CrewAmount);
-            ColumnCrewFee.DataPropertyName = nameof(Entry.CrewFee);
-            ColumnMarkup.DataPropertyName = nameof(Entry.Markup);
-
+            planeManager = new(storage);
             CountStatistics();
         }
 
@@ -81,7 +35,7 @@ namespace AirportDataGridView.App.UI
 
             if (col == ColumnRevenue)
             {
-                var entry = (Entry)dataGridView.Rows[e.RowIndex].DataBoundItem;
+                var entry = (Plane)dataGridView.Rows[e.RowIndex].DataBoundItem;
                 var result = (entry.PassengersAmount * entry.PassengersFee + entry.CrewAmount * entry.CrewFee);
                 e.Value = result * (entry.Markup / 100) + result; // Добавление процента надбавки
             }
@@ -92,49 +46,38 @@ namespace AirportDataGridView.App.UI
             var entryForm = new EntryForm();
             if (entryForm.ShowDialog() == DialogResult.OK)
             {
-                entries.Add(entryForm.ResultEntry);
+                planeManager.Add(entryForm.ResultEntry, cancellationTokenSource.Token);
                 OnUpdate();
             }
         }
 
         private void OnChangeEntry(object? sender, EventArgs e)
         {
-            if (!CheckSelectedRows()) 
+            if (bindingSource.Current is Plane plane)
             {
-                return;
+                var entryForm = new EntryForm(plane);
+                entryForm.ShowDialog();
+                OnUpdate();
             }
-            var selectedEntry = entries[dataGridView.SelectedRows[0].Index];
-            var entryForm = new EntryForm(selectedEntry);
-            entryForm.ShowDialog();
-            OnUpdate();
         }
 
-        private void OnDeleteEntry(object? sender, EventArgs e)
+        private async void OnDeleteEntry(object? sender, EventArgs e)
         {
-            if (!CheckSelectedRows())
-            { 
-                return; 
+            if (bindingSource.Current is Plane plane)
+            {
+                await planeManager.Delete(plane, cancellationTokenSource.Token);
+                OnUpdate();
             }
-            var selectedEntry = entries[dataGridView.SelectedRows[0].Index];
-            entries.Remove(selectedEntry);
-            OnUpdate();
         }
 
-        private void CountStatistics()
+        private async void CountStatistics()
         {
-            var arrivingFlights = entries.Count;
-            var allPassengers = entries.Sum(x => x.PassengersAmount);
-            var allCrew = entries.Sum(x => x.CrewAmount);
-            var allRevenue = entries.Sum(x =>
-            {
-                var result = (x.PassengersAmount * x.PassengersFee + x.CrewAmount * x.CrewFee);
-                return result * (x.Markup / 100) + result; // Добавление процента надбавки
-            });
+            var statistics = await planeManager.GetStatistics(cancellationTokenSource.Token);
 
-            toolStripStatusLabelArriving.Text = $"Прибывают: {arrivingFlights}";
-            toolStripStatusLabelPassengers.Text = $"Пассажиры: {allPassengers}";
-            toolStripStatusLabelCrew.Text = $"Экипаж: {allCrew}";
-            toolStripStatusLabelRevenue.Text = $"Выручка: {allRevenue}";
+            toolStripStatusLabelArriving.Text = $"Прибывают: {statistics.AllFlights}";
+            toolStripStatusLabelPassengers.Text = $"Пассажиры: {statistics.AllPassengers}";
+            toolStripStatusLabelCrew.Text = $"Экипаж: {statistics.AllCrew}";
+            toolStripStatusLabelRevenue.Text = $"Выручка: {statistics.AllRevenue}";
         }
 
         private void OnUpdate()
@@ -143,15 +86,21 @@ namespace AirportDataGridView.App.UI
             CountStatistics();
         }
 
-        private bool CheckSelectedRows()
+        private async void OnFormLoad(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedRows.Count != 1)
-            {
-                MessageBox.Show("Выберите одну запись", "Ошибка", MessageBoxButtons.OK);
-                return false;
-            }
+            bindingSource.DataSource = await planeManager.GetAll(cancellationTokenSource.Token);
+            dataGridView.DataSource = bindingSource;
 
-            return true;
+            dataGridView.AutoGenerateColumns = false;
+
+            ColumnFlightNum.DataPropertyName = nameof(Plane.FlightNum);
+            ColumnPlaneType.DataPropertyName = nameof(Plane.PlaneType);
+            ColumnArrive.DataPropertyName = nameof(Plane.Arrive);
+            ColumnPassengersAmount.DataPropertyName = nameof(Plane.PassengersAmount);
+            ColumnPassengerFee.DataPropertyName = nameof(Plane.PassengersFee);
+            ColumnCrewAmount.DataPropertyName = nameof(Plane.CrewAmount);
+            ColumnCrewFee.DataPropertyName = nameof(Plane.CrewFee);
+            ColumnMarkup.DataPropertyName = nameof(Plane.Markup);
         }
     }
 }

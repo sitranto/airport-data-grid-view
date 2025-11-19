@@ -6,10 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\AirportDataGridView.Entities\AirportDataGridView.Entities.csproj" />
+    <ProjectReference Include="..\BL\AirportDataGridView.EntityStorage\AirportDataGridView.EntityManager.csproj" />
+    <ProjectReference Include="..\BL\AirportDataGridView.Services\AirportDataGridView.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@ namespace AirportDataGridView.Entities.Models
     /// <summary>
     /// Класс модели записи
     /// </summary>
-    public class Entry
+    public class Plane
     {
         /// <summary>
         /// Свойство номера рейса

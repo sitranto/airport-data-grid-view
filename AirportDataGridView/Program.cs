@@ -1,10 +1,11 @@
 ﻿using AirportDataGridView.App.UI;
+using AirportDataGridView.Services;
 
-namespace AirportDataGridView
+namespace AirportDataGridView.App
 {
     /// <summary>
     /// Класс программы
-        /// </summary>
+    /// </summary>
     internal static class Program
     {
         /// <summary>
@@ -13,10 +14,12 @@ namespace AirportDataGridView
         [STAThread]
         public static void Main()
         {
+            var storage = new InMemoryStorage();
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            Application.Run(new MainForm(storage));
         }
     }
 }

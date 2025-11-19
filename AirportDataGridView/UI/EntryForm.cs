@@ -1,4 +1,4 @@
-﻿using AirportDataGridView.Infrastructure;
+﻿using AirportDataGridView.App.Infrastructure;
 using AirportDataGridView.Entities.Models;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,18 +9,18 @@ namespace AirportDataGridView.App.UI
     /// </summary>
     public partial class EntryForm : Form
     {
-        private readonly Entry entry;
+        private readonly Plane entry;
 
         /// <summary>
         /// Свойство записи
         /// </summary>
-        public Entry ResultEntry => entry;
+        public Plane ResultEntry => entry;
 
         /// <summary>
         /// Конструктор для класса <see cref="EntryForm"/>
         /// </summary>
         /// <param name="sourceEntry">Исходная запись для операции изменения</param>
-        public EntryForm(Entry? sourceEntry = null)
+        public EntryForm(Plane? sourceEntry = null)
         {
             InitializeComponent();
 
@@ -28,7 +28,7 @@ namespace AirportDataGridView.App.UI
 
             if (sourceEntry == null)
             {
-                entry = new Entry();
+                entry = new Plane();
                 button.Text = "Добавить";
             }
             else
@@ -69,14 +69,14 @@ namespace AirportDataGridView.App.UI
                     {
                         Control? control = memberName switch
                         {
-                            nameof(Entry.FlightNum) => textBoxFlightNum,
-                            nameof(Entry.PlaneType) => comboBoxPlaneType,
-                            nameof(Entry.Arrive) => textBoxArrive,
-                            nameof(Entry.PassengersAmount) => textBoxPassengersAmount,
-                            nameof(Entry.PassengersFee) => textBoxPassengersFee,
-                            nameof(Entry.CrewAmount) => textBoxCrewAmount,
-                            nameof(Entry.CrewFee) => textBoxCrewFee,
-                            nameof(Entry.Markup) => textBoxMarkup,
+                            nameof(Plane.FlightNum) => textBoxFlightNum,
+                            nameof(Plane.PlaneType) => comboBoxPlaneType,
+                            nameof(Plane.Arrive) => textBoxArrive,
+                            nameof(Plane.PassengersAmount) => textBoxPassengersAmount,
+                            nameof(Plane.PassengersFee) => textBoxPassengersFee,
+                            nameof(Plane.CrewAmount) => textBoxCrewAmount,
+                            nameof(Plane.CrewFee) => textBoxCrewFee,
+                            nameof(Plane.Markup) => textBoxMarkup,
                             _ => null
                         };
 

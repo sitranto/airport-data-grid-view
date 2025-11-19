@@ -195,6 +195,7 @@
             MainMenuStrip = menuStrip;
             Name = "MainForm";
             Text = "Аэропорт";
+            Load += OnFormLoad;
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             statusStrip.ResumeLayout(false);
