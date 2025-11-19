@@ -1,9 +1,9 @@
-﻿namespace AirportDataGridView.Classes
+﻿namespace AirportDataGridView.Constants
 {
     /// <summary>
     /// Класс констант
     /// </summary>
-    public class Constants
+    public class AppConstants
     {
         /// <summary>
         /// Минимальное значение числа пассажиров

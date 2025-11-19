@@ -1,8 +1,8 @@
 ﻿using AirportDataGridView.Infrastructure;
-using AirportDataGridView.Models;
+using AirportDataGridView.App.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace AirportDataGridView.Forms
+namespace AirportDataGridView.App.UI
 {
     /// <summary>
     /// Класс формы добавления и изменения данных

@@ -1,6 +1,6 @@
-﻿using AirportDataGridView.Models;
+﻿using AirportDataGridView.App.Models;
 
-namespace AirportDataGridView.Forms
+namespace AirportDataGridView.App.UI
 {
     /// <summary>
     /// Класс основной формы приложения.
