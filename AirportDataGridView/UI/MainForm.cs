@@ -89,7 +89,6 @@ namespace AirportDataGridView.App.UI
         private async void OnFormLoad(object sender, EventArgs e)
         {
             bindingSource.DataSource = await planeManager.GetAll(cancellationTokenSource.Token);
-            dataGridView.DataSource = bindingSource;
 
             dataGridView.AutoGenerateColumns = false;
 
@@ -101,6 +100,8 @@ namespace AirportDataGridView.App.UI
             ColumnCrewAmount.DataPropertyName = nameof(Plane.CrewAmount);
             ColumnCrewFee.DataPropertyName = nameof(Plane.CrewFee);
             ColumnMarkup.DataPropertyName = nameof(Plane.Markup);
+
+            dataGridView.DataSource = bindingSource;
         }
     }
 }

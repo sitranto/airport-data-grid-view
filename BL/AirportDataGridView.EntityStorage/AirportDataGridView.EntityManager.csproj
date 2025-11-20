@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AirportDataGridView.Services\AirportDataGridView.Services.csproj" />
+    <ProjectReference Include="..\..\DAL\AirportDataGridView.Entities\AirportDataGridView.Entities.csproj" />
+    <ProjectReference Include="..\AirportDataGridView.Services.Contracts\AirportDataGridView.Services.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
