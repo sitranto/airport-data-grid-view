@@ -26,8 +26,6 @@ namespace AirportDataGridView.Entities.Models
         [Required]
         public DateTime Arrive { get; set; }
 
-       
-
         /// <summary>
         /// Свойство числа пассажиров
         /// </summary>
@@ -67,6 +65,5 @@ namespace AirportDataGridView.Entities.Models
         [Display(Name = "Процент надбавки")]
         [Range(EntityConstants.MarkupMinValue, EntityConstants.MarkupMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public float Markup { get; set; }
-
     }
 }
