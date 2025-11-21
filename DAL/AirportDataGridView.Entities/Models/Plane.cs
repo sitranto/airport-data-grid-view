@@ -1,4 +1,4 @@
-﻿using AirportDataGridView.Constants;
+﻿using AirportDataGridView.Entities.Contracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace AirportDataGridView.Entities.Models
@@ -26,12 +26,14 @@ namespace AirportDataGridView.Entities.Models
         [Required]
         public DateTime Arrive { get; set; }
 
+       
+
         /// <summary>
         /// Свойство числа пассажиров
         /// </summary>
         [Required]
         [Display(Name = "Число пассажиров")]
-        [Range(AppConstants.PassengersAmountMinValue, AppConstants.PassengersAmountMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
+        [Range(EntityConstants.PassengersAmountMinValue, EntityConstants.PassengersAmountMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public int PassengersAmount { get; set; }
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace AirportDataGridView.Entities.Models
         /// </summary>
         [Required]
         [Display(Name = "Надбавка за пассажира")]
-        [Range(AppConstants.PassengersFeeMinValue, AppConstants.PassengersFeeMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
+        [Range(EntityConstants.PassengersFeeMinValue, EntityConstants.PassengersFeeMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public float PassengersFee { get; set; }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace AirportDataGridView.Entities.Models
         /// </summary>
         [Required]
         [Display(Name = "Число экипажа")]
-        [Range(AppConstants.CrewAmountMinValue, AppConstants.CrewAmountMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
+        [Range(EntityConstants.CrewAmountMinValue, EntityConstants.CrewAmountMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public int CrewAmount { get; set; }
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace AirportDataGridView.Entities.Models
         /// </summary>
         [Required]
         [Display(Name = "Надбавка за экипаж")]
-        [Range(AppConstants.CrewFeeMinValue, AppConstants.CrewFeeMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
+        [Range(EntityConstants.CrewFeeMinValue, EntityConstants.CrewFeeMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public float CrewFee { get; set; }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace AirportDataGridView.Entities.Models
         /// </summary>
         [Required]
         [Display(Name = "Процент надбавки")]
-        [Range(AppConstants.MarkupMinValue, AppConstants.MarkupMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
+        [Range(EntityConstants.MarkupMinValue, EntityConstants.MarkupMaxValue, ErrorMessage = "{0} должно быть в пределе от {1} до {2}")]
         public float Markup { get; set; }
 
     }

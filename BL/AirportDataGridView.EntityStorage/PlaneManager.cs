@@ -34,9 +34,10 @@ namespace AirportDataGridView.EntityManager
         /// </summary>
         public async Task<PlaneStatistics> GetStatistics(CancellationToken cancellationToken = default)
         {
-            var planes = await GetAll(cancellationToken);
+            var planesEnumerable = await GetAll(cancellationToken);
+            var planes = planesEnumerable.ToList();
 
-            var allFlights = planes.Count();
+            var allFlights = planes.Count;
             var allPassengers = planes.Sum(x => x.PassengersAmount);
             var allCrew = planes.Sum(x => x.CrewAmount);
             var allRevenue = planes.Sum(x =>

@@ -13,11 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Entities", "DAL\AirportDataGridView.Entities\AirportDataGridView.Entities.csproj", "{95CA36B2-D3B4-4C4E-AECB-0CB89BDF2443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Constants", "AirportDataGridView.Constants\AirportDataGridView.Constants.csproj", "{5070612A-8E7A-449B-A052-BCD73E2203E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.EntityManager", "BL\AirportDataGridView.EntityStorage\AirportDataGridView.EntityManager.csproj", "{9FC2057B-FF4B-42DE-B362-426404177669}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.App", "AirportDataGridView.App\AirportDataGridView.App.csproj", "{C024172F-2583-BC1A-D3DC-FD5A08BF7A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Entities.Contracts", "DAL\AirportDataGridView.Entities.Contracts\AirportDataGridView.Entities.Contracts.csproj", "{EEAE3CE6-4932-4A91-9547-C9B7C842C645}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,18 +35,14 @@ Global
 		{95CA36B2-D3B4-4C4E-AECB-0CB89BDF2443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95CA36B2-D3B4-4C4E-AECB-0CB89BDF2443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95CA36B2-D3B4-4C4E-AECB-0CB89BDF2443}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5070612A-8E7A-449B-A052-BCD73E2203E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5070612A-8E7A-449B-A052-BCD73E2203E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5070612A-8E7A-449B-A052-BCD73E2203E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5070612A-8E7A-449B-A052-BCD73E2203E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FC2057B-FF4B-42DE-B362-426404177669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FC2057B-FF4B-42DE-B362-426404177669}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FC2057B-FF4B-42DE-B362-426404177669}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FC2057B-FF4B-42DE-B362-426404177669}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C024172F-2583-BC1A-D3DC-FD5A08BF7A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C024172F-2583-BC1A-D3DC-FD5A08BF7A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C024172F-2583-BC1A-D3DC-FD5A08BF7A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C024172F-2583-BC1A-D3DC-FD5A08BF7A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAE3CE6-4932-4A91-9547-C9B7C842C645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAE3CE6-4932-4A91-9547-C9B7C842C645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAE3CE6-4932-4A91-9547-C9B7C842C645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAE3CE6-4932-4A91-9547-C9B7C842C645}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,7 +51,7 @@ Global
 		{73AE9A35-D195-44B0-9389-BF5366EBD16E} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{DE769916-DFF1-4538-81F4-C428913D8FE1} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{95CA36B2-D3B4-4C4E-AECB-0CB89BDF2443} = {2037EDC2-4ACA-4210-A64D-B5E4CD7EF413}
-		{9FC2057B-FF4B-42DE-B362-426404177669} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{EEAE3CE6-4932-4A91-9547-C9B7C842C645} = {2037EDC2-4ACA-4210-A64D-B5E4CD7EF413}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADF4A7E2-62C0-4EF4-A22A-D6AE1DA2F469}

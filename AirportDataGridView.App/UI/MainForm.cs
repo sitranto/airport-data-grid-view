@@ -1,5 +1,4 @@
 ﻿using AirportDataGridView.Entities.Models;
-using AirportDataGridView.EntityManager;
 using AirportDataGridView.Services.Contracts;
 
 namespace AirportDataGridView.App.UI
@@ -9,7 +8,7 @@ namespace AirportDataGridView.App.UI
     /// </summary>
     public partial class MainForm : Form
     {
-        private readonly PlaneManager planeManager;
+        private readonly IStorage planeStorage;
         private readonly CancellationTokenSource cancellationTokenSource = new();
         private readonly BindingSource bindingSource = [];
 
@@ -17,10 +16,43 @@ namespace AirportDataGridView.App.UI
         /// Конструктор для <see cref="MainForm"/>
         /// </summary>
         /// <param name="storage">Хранилище полетов</param>
-        public MainForm(IStorage<Plane> storage)
+        public MainForm(IStorage storage)
         {
             InitializeComponent();
-            planeManager = new(storage);
+            planeStorage = storage;
+            planeStorage.Add(new Plane
+            {
+                FlightNum = 1,
+                PlaneType = PlaneType.Boing,
+                Arrive = DateTime.Now.AddDays(2),
+                PassengersAmount = 10,
+                PassengersFee = 5,
+                CrewAmount = 3,
+                CrewFee = 10,
+                Markup = 15
+            }, cancellationTokenSource.Token);
+            planeStorage.Add(new Plane
+            {
+                FlightNum = 2,
+                PlaneType = PlaneType.Airbus,
+                Arrive = DateTime.Now.AddDays(3),
+                PassengersAmount = 20,
+                PassengersFee = 6,
+                CrewAmount = 4,
+                CrewFee = 15,
+                Markup = 20
+            }, cancellationTokenSource.Token);
+            planeStorage.Add(new Plane
+            {
+                FlightNum = 3,
+                PlaneType = PlaneType.Oak,
+                Arrive = DateTime.Now.AddDays(4),
+                PassengersAmount = 30,
+                PassengersFee = 7,
+                CrewAmount = 5,
+                CrewFee = 20,
+                Markup = 25
+            }, cancellationTokenSource.Token);
             CountStatistics();
         }
 
@@ -46,7 +78,7 @@ namespace AirportDataGridView.App.UI
             var entryForm = new EntryForm();
             if (entryForm.ShowDialog() == DialogResult.OK)
             {
-                planeManager.Add(entryForm.ResultEntry, cancellationTokenSource.Token);
+                planeStorage.Add(entryForm.ResultEntry, cancellationTokenSource.Token);
                 OnUpdate();
             }
         }
@@ -65,14 +97,14 @@ namespace AirportDataGridView.App.UI
         {
             if (bindingSource.Current is Plane plane)
             {
-                await planeManager.Delete(plane, cancellationTokenSource.Token);
+                await planeStorage.Delete(plane, cancellationTokenSource.Token);
                 OnUpdate();
             }
         }
 
         private async void CountStatistics()
         {
-            var statistics = await planeManager.GetStatistics(cancellationTokenSource.Token);
+            var statistics = await planeStorage.Statistics(cancellationTokenSource.Token);
 
             toolStripStatusLabelArriving.Text = $"Прибывают: {statistics.AllFlights}";
             toolStripStatusLabelPassengers.Text = $"Пассажиры: {statistics.AllPassengers}";
@@ -88,7 +120,7 @@ namespace AirportDataGridView.App.UI
 
         private async void OnFormLoad(object sender, EventArgs e)
         {
-            bindingSource.DataSource = await planeManager.GetAll(cancellationTokenSource.Token);
+            bindingSource.DataSource = await planeStorage.GetAll(cancellationTokenSource.Token);
 
             dataGridView.AutoGenerateColumns = false;
 

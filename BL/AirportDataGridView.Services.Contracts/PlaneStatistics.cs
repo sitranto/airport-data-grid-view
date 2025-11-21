@@ -1,27 +1,27 @@
-﻿namespace AirportDataGridView.EntityManager
+﻿    namespace AirportDataGridView.Services.Contracts
 {
     /// <summary>
-    /// Класс статистики
+    /// Статистика
     /// </summary>
     public class PlaneStatistics
     {
         /// <summary>
-        /// Свойство общего количества прибывающих рейсов
+        /// Общее количество прибывающих рейсов
         /// </summary>
         public int AllFlights { get; set; }
-        
+
         /// <summary>
-        /// Свойство общего количества пассажиров
+        /// Общее количество пассажиров
         /// </summary>
         public int AllPassengers { get; set; }
 
         /// <summary>
-        /// Свойство общего количества экипажа
+        /// Общее количество экипажа
         /// </summary>
         public int AllCrew { get; set; }
 
         /// <summary>
-        /// Свойство общего количества выручки
+        /// Общее количество выручки
         /// </summary>
         public float AllRevenue { get; set; }
     }
