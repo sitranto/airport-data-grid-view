@@ -8,7 +8,7 @@
 	  <Authors>anatoliylatyshev</Authors>
 	  <Product>AirportDataGridView</Product>
 	  <Description>AirportDataGridView.Services Латышев Анатолий ИП-22-3</Description>
-	  <Version>1.0.2</Version>
+	  <Version>1.0.3</Version>
 	  <PackageTags>Storage; InMemoryStorage; Service</PackageTags>
 	  <PackageIcon>icon.jpg</PackageIcon>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>

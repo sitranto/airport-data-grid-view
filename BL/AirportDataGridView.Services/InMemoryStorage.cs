@@ -17,9 +17,23 @@ namespace AirportDataGridView.Services
             return Task.CompletedTask;
         }
 
-        Task IStorage.Update(Plane item, CancellationToken cancellationToken)
+        Task IStorage.Update(Plane plane, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var planeToEdit = Planes.FirstOrDefault(x => x.Id == plane.Id);
+
+            if (planeToEdit != null)
+            {
+                planeToEdit.FlightNum = plane.FlightNum;
+                planeToEdit.PlaneType = plane.PlaneType;
+                planeToEdit.Arrive = plane.Arrive;
+                planeToEdit.PassengersAmount = plane.PassengersAmount;
+                planeToEdit.PassengersFee = plane.PassengersFee;
+                planeToEdit.CrewAmount = plane.CrewAmount;
+                planeToEdit.CrewFee = plane.CrewFee;
+                planeToEdit.Markup = plane.Markup;
+            }
+
+            return Task.CompletedTask;
         }
 
         Task IStorage.Delete(Plane plane, CancellationToken cancellationToken)

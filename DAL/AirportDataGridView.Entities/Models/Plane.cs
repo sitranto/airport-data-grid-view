@@ -9,6 +9,11 @@ namespace AirportDataGridView.Entities.Models
     public class Plane
     {
         /// <summary>
+        /// Идентификатор сущности рейса
+        /// </summary>
+        public Guid Id { get; init; } = Guid.NewGuid();
+
+        /// <summary>
         /// Свойство номера рейса
         /// </summary>
         [Required]

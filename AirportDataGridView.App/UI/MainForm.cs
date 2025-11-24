@@ -1,5 +1,6 @@
 ﻿using AirportDataGridView.Entities.Models;
 using AirportDataGridView.Services.Contracts;
+using System.Threading.Tasks;
 
 namespace AirportDataGridView.App.UI
 {
@@ -83,13 +84,16 @@ namespace AirportDataGridView.App.UI
             }
         }
 
-        private void OnChangeEntry(object? sender, EventArgs e)
+        private async void OnChangeEntry(object? sender, EventArgs e)
         {
             if (bindingSource.Current is Plane plane)
             {
                 var entryForm = new EntryForm(plane);
-                entryForm.ShowDialog();
-                OnUpdate();
+                if(entryForm.ShowDialog() == DialogResult.OK)
+                {
+                    await planeStorage.Update(entryForm.ResultEntry, cancellationTokenSource.Token);
+                    OnUpdate();
+                }
             }
         }
 

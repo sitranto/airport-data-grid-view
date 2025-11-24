@@ -33,7 +33,18 @@ namespace AirportDataGridView.App.UI
             }
             else
             {
-                entry = sourceEntry;
+                entry = new Plane() 
+                {
+                    Id = sourceEntry.Id,
+                    FlightNum = sourceEntry.FlightNum,
+                    PlaneType = sourceEntry.PlaneType,
+                    Arrive = sourceEntry.Arrive,
+                    PassengersAmount = sourceEntry.PassengersAmount,
+                    PassengersFee = sourceEntry.PassengersFee,
+                    CrewAmount = sourceEntry.CrewAmount,
+                    CrewFee = sourceEntry.CrewFee,
+                    Markup = sourceEntry.Markup,
+                };
                 button.Text = "Сохранить";
             }
 
