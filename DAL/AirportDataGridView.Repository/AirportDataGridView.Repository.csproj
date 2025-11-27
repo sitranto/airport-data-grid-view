@@ -4,11 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DAL\AirportDataGridView.Entities\AirportDataGridView.Entities.csproj" />
+    <ProjectReference Include="..\AirportDataGridView.Repository.Contracts\AirportDataGridView.Repository.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,10 +2,7 @@
 
 namespace AirportDataGridView.Services.Contracts
 {
-    /// <summary>
-    /// Интерфейс хранилища сущностей
-    /// </summary>
-    public interface IStorage
+    public interface IService
     {
         /// <summary>
         /// Метод получения всех объектов хранилища 

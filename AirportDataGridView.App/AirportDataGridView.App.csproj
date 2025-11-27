@@ -10,12 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AirportDataGridView.Services" Version="1.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BL\AirportDataGridView.Services.Contracts\AirportDataGridView.Services.Contracts.csproj" />
+    <ProjectReference Include="..\BL\AirportDataGridView.Services\AirportDataGridView.Services.csproj" />
     <ProjectReference Include="..\DAL\AirportDataGridView.Entities\AirportDataGridView.Entities.csproj" />
+    <ProjectReference Include="..\DAL\AirportDataGridView.Repository.Contracts\AirportDataGridView.Repository.Contracts.csproj" />
+    <ProjectReference Include="..\DAL\AirportDataGridView.Repository\AirportDataGridView.Repository.csproj" />
   </ItemGroup>
 
 </Project>

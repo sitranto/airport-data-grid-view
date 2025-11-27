@@ -1,4 +1,4 @@
-﻿    namespace AirportDataGridView.Services.Contracts
+﻿namespace AirportDataGridView.Entities.Models
 {
     /// <summary>
     /// Статистика

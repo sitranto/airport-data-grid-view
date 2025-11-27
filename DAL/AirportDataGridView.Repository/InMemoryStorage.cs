@@ -1,7 +1,7 @@
 ﻿using AirportDataGridView.Entities.Models;
-using AirportDataGridView.Services.Contracts;
+using AirportDataGridView.Repository.Contracts;
 
-namespace AirportDataGridView.Services
+namespace AirportDataGridView.Repository
 {
     /// <summary>
     /// Класс inMemory хранилища в виде списка <see cref="List{Plane}"/> для 
@@ -50,7 +50,7 @@ namespace AirportDataGridView.Services
 
         Task<PlaneStatistics> IStorage.Statistics(CancellationToken cancellationToken)
         {
-            var res = new PlaneStatistics() 
+            var res = new PlaneStatistics()
             {
                 AllFlights = Planes.Count,
                 AllPassengers = Planes.Sum(x => x.PassengersAmount),
