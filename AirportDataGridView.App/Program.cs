@@ -1,6 +1,7 @@
 ﻿using AirportDataGridView.App.UI;
 using AirportDataGridView.Repository;
 using AirportDataGridView.Services;
+using Serilog;
 
 namespace AirportDataGridView.App
 {
@@ -15,6 +16,15 @@ namespace AirportDataGridView.App
         [STAThread]
         public static void Main()
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Debug()
+            .WriteTo.Seq("http://localhost:5341",
+                 apiKey: "fUAIjeUqzltPLEs2zuSx")
+            .CreateLogger();
+
+            Log.Debug("Тестовый лог в Debug окне");
+
             var storage = new InMemoryStorage();
             var service = new PlaneService(storage);
 

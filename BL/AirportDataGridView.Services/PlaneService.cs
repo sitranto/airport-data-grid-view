@@ -1,6 +1,8 @@
 ﻿using AirportDataGridView.Entities.Models;
 using AirportDataGridView.Repository.Contracts;
 using AirportDataGridView.Services.Contracts;
+using Serilog;
+using System.Diagnostics;
 
 namespace AirportDataGridView.Services
 {
@@ -12,19 +14,47 @@ namespace AirportDataGridView.Services
         /// <summary>
         /// Добавление полета
         /// </summary>
-        public Task Add(Plane item, CancellationToken cancellationToken = default)
+        public async Task Add(Plane item, CancellationToken cancellationToken = default)
         {
-            storage.Add(item, cancellationToken);
-            return Task.CompletedTask;
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                await storage.Add(item, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                Log.Error($"PlaneService.Add не выполнен с ошибкой: {ex.Message}");
+            }
+            finally
+            {
+                sw.Stop();
+                double ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                Log.Debug("PlaneService.Add выполнен за {ms:F6} мс", ms);
+            }
         }
 
         /// <summary>
         /// Удаление полета
         /// </summary>
-        public Task Delete(Plane item, CancellationToken cancellationToken = default)
+        public async Task Delete(Plane item, CancellationToken cancellationToken = default)
         {
-            storage.Delete(item, cancellationToken);
-            return Task.CompletedTask;
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                await storage.Delete(item, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                Log.Error($"PlaneService.Delete не выполнен с ошибкой: {ex.Message}");
+            }
+            finally
+            {
+                sw.Stop();
+                double ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                Log.Debug("PlaneService.Delete выполнен за {ms:F6} мс", ms);
+            }
         }
 
         /// <summary>
@@ -32,8 +62,24 @@ namespace AirportDataGridView.Services
         /// </summary>
         public async Task<IEnumerable<Plane>> GetAll(CancellationToken cancellationToken = default)
         {
-            var allPLanes = await storage.GetAll(cancellationToken);
-            return allPLanes;
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                var allPLanes = await storage.GetAll(cancellationToken);
+                return allPLanes;
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                Log.Error($"PlaneService.GetAll не выполнен с ошибкой: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                sw.Stop();
+                double ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                Log.Debug("PlaneService.GetAll выполнен за {ms:F6} мс", ms);
+            }
         }
 
         /// <summary>
@@ -41,17 +87,48 @@ namespace AirportDataGridView.Services
         /// </summary>
         public async Task<PlaneStatistics> Statistics(CancellationToken cancellationToken = default)
         {
-            var statistics = await storage.Statistics(cancellationToken);
-            return statistics;
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                var statistics = await storage.Statistics(cancellationToken);
+                return statistics;
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                Log.Error($"PlaneService.Statistics не выполнен с ошибкой: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                sw.Stop();
+                double ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                Log.Debug("PlaneService.Statistics выполнен за {ms:F6} мс", ms);
+            }
         }
 
         /// <summary>
         /// Обновление данных о полете
         /// </summary>
-        public Task Update(Plane item, CancellationToken cancellationToken = default)
+        public async Task Update(Plane item, CancellationToken cancellationToken = default)
         {
-            storage.Update(item, cancellationToken);
-            return Task.CompletedTask;
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                await storage.Update(item, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                sw.Stop();
+                Log.Error($"PlaneService.Update не выполнен с ошибкой: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                sw.Stop();
+                double ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                Log.Debug("PlaneService.Update выполнен за {ms:F6} мс", ms);
+            }
         }
     }
 }
