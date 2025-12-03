@@ -2,6 +2,7 @@
 using AirportDataGridView.Repository;
 using AirportDataGridView.Services;
 using Serilog;
+using Serilog.Extensions.Logging;
 
 namespace AirportDataGridView.App
 {
@@ -18,15 +19,15 @@ namespace AirportDataGridView.App
         {
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
-            .WriteTo.Debug()
             .WriteTo.Seq("http://localhost:5341",
                  apiKey: "fUAIjeUqzltPLEs2zuSx")
+            .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
             .CreateLogger();
 
-            Log.Debug("Тестовый лог в Debug окне");
+            var loggerFactory = new SerilogLoggerFactory(Log.Logger, dispose: true);
 
             var storage = new InMemoryStorage();
-            var service = new PlaneService(storage);
+            var service = new PlaneService(storage, loggerFactory);
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
