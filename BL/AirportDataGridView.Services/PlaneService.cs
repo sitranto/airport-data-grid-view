@@ -2,7 +2,6 @@
 using AirportDataGridView.Repository.Contracts;
 using AirportDataGridView.Services.Contracts;
 using Microsoft.Extensions.Logging;
-using Serilog;
 using System.Diagnostics;
 
 namespace AirportDataGridView.Services
