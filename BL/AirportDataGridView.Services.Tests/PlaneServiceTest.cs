@@ -144,15 +144,7 @@ namespace AirportDataGridView.Services.Tests
             };
 
             mockStorage.Setup(x => x.Update(
-                It.Is<Plane>(p =>
-                    p.FlightNum == 1 &&
-                    p.PlaneType == PlaneType.Boing &&
-                    p.PassengersAmount == 10 &&
-                    p.PassengersFee == 5 &&
-                    p.CrewAmount == 3 &&
-                    p.CrewFee == 10 &&
-                    p.Markup == 15
-                ), cancellationTokenSource.Token)
+                It.Is<Plane>(p => p == incomingPlane), cancellationTokenSource.Token)
             ).Returns(Task.CompletedTask);
 
             // Act
@@ -160,16 +152,7 @@ namespace AirportDataGridView.Services.Tests
 
             // Assert
             mockStorage.Verify(s => s.Update(
-                It.Is<Plane>(p =>
-                    p.FlightNum == incomingPlane.FlightNum &&
-                    p.PlaneType == incomingPlane.PlaneType &&
-                    p.Arrive == incomingPlane.Arrive &&
-                    p.PassengersAmount == incomingPlane.PassengersAmount &&
-                    p.PassengersFee == incomingPlane.PassengersFee &&
-                    p.CrewAmount == incomingPlane.CrewAmount &&
-                    p.CrewFee == incomingPlane.CrewFee &&
-                    p.Markup == incomingPlane.Markup
-                ), cancellationTokenSource.Token), Times.Once
+                It.Is<Plane>(p => p == incomingPlane), cancellationTokenSource.Token), Times.Once
             );
         }
     }

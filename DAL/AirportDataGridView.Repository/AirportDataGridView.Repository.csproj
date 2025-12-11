@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AirportDataGridView.Context\AirportDataGridView.Context.csproj" />
     <ProjectReference Include="..\AirportDataGridView.Repository.Contracts\AirportDataGridView.Repository.Contracts.csproj" />
   </ItemGroup>
 

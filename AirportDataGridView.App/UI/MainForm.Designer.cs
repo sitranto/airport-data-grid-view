@@ -47,6 +47,7 @@
             ColumnCrewFee = new DataGridViewTextBoxColumn();
             ColumnMarkup = new DataGridViewTextBoxColumn();
             ColumnRevenue = new DataGridViewTextBoxColumn();
+            обновитьToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
@@ -54,7 +55,7 @@
             // 
             // menuStrip
             // 
-            menuStrip.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem, changeToolStripMenuItem, deleteToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { addToolStripMenuItem, changeToolStripMenuItem, deleteToolStripMenuItem, обновитьToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Size = new Size(941, 24);
@@ -184,6 +185,13 @@
             ColumnRevenue.Name = "ColumnRevenue";
             ColumnRevenue.ReadOnly = true;
             // 
+            // обновитьToolStripMenuItem
+            // 
+            обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+            обновитьToolStripMenuItem.Size = new Size(73, 20);
+            обновитьToolStripMenuItem.Text = "Обновить";
+            обновитьToolStripMenuItem.Click += OnUpdateClick;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -226,5 +234,6 @@
         private DataGridViewTextBoxColumn ColumnCrewFee;
         private DataGridViewTextBoxColumn ColumnMarkup;
         private DataGridViewTextBoxColumn ColumnRevenue;
+        private ToolStripMenuItem обновитьToolStripMenuItem;
     }
 }

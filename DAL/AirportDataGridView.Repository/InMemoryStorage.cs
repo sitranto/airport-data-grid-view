@@ -47,22 +47,5 @@ namespace AirportDataGridView.Repository
             var res = Planes.AsEnumerable();
             return Task.FromResult(res);
         }
-
-        Task<PlaneStatistics> IStorage.Statistics(CancellationToken cancellationToken)
-        {
-            var res = new PlaneStatistics()
-            {
-                AllFlights = Planes.Count,
-                AllPassengers = Planes.Sum(x => x.PassengersAmount),
-                AllCrew = Planes.Sum(x => x.CrewAmount),
-                AllRevenue = Planes.Sum(x =>
-                {
-                    var result = (x.PassengersAmount * x.PassengersFee + x.CrewAmount * x.CrewFee);
-                    return result * (x.Markup / 100) + result; // Добавление процента надбавки
-                })
-            };
-
-            return Task.FromResult(res);
-        }
     }
 }
