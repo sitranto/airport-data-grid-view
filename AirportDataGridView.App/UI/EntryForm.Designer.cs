@@ -1,4 +1,4 @@
-﻿namespace AirportDataGridView.Forms
+﻿namespace AirportDataGridView.App.UI
 {
     partial class EntryForm
     {

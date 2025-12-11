@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\AirportDataGridView.Services.Contracts\AirportDataGridView.Services.Contracts.csproj" />
+    <ProjectReference Include="..\BL\AirportDataGridView.Services\AirportDataGridView.Services.csproj" />
+    <ProjectReference Include="..\DAL\AirportDataGridView.Entities\AirportDataGridView.Entities.csproj" />
+    <ProjectReference Include="..\DAL\AirportDataGridView.Repository.Contracts\AirportDataGridView.Repository.Contracts.csproj" />
+    <ProjectReference Include="..\DAL\AirportDataGridView.Repository\AirportDataGridView.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Serilog" Version="4.3.0" />
+	<PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+	<PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+	<PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+	<PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
+  </ItemGroup>
+</Project>
