@@ -26,10 +26,5 @@ namespace AirportDataGridView.Repository.Contracts
         /// Метод удаления объекта в хранилище
         /// </summary>
         Task Delete(Plane item, CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Метод получения статистики объектов в хранилище
-        /// </summary>
-        Task<PlaneStatistics> Statistics(CancellationToken cancellationToken = default);
     }
 }

@@ -3,6 +3,7 @@ using AirportDataGridView.Repository.Contracts;
 using AirportDataGridView.Services.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace AirportDataGridView.Services
 {
@@ -16,7 +17,7 @@ namespace AirportDataGridView.Services
         /// <summary>
         /// Добавление полета
         /// </summary>
-        public async Task Add(Plane item, CancellationToken cancellationToken = default)
+        public async Task Add(Entities.Models.Plane item, CancellationToken cancellationToken = default)
         {
             var sw = Stopwatch.StartNew();
             try
@@ -33,7 +34,7 @@ namespace AirportDataGridView.Services
         /// <summary>
         /// Удаление полета
         /// </summary>
-        public async Task Delete(Plane item, CancellationToken cancellationToken = default)
+        public async Task Delete(Entities.Models.Plane item, CancellationToken cancellationToken = default)
         {
             var sw = Stopwatch.StartNew();
             try
@@ -50,7 +51,7 @@ namespace AirportDataGridView.Services
         /// <summary>
         /// Возврат всех полетов
         /// </summary>
-        public async Task<IEnumerable<Plane>> GetAll(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Entities.Models.Plane>> GetAll(CancellationToken cancellationToken = default)
         {
             var sw = Stopwatch.StartNew();
             try
@@ -73,8 +74,19 @@ namespace AirportDataGridView.Services
             var sw = Stopwatch.StartNew();
             try
             {
-                var statistics = await storage.Statistics(cancellationToken);
-                return statistics;
+                var planes = await storage.GetAll(cancellationToken);
+
+                return new PlaneStatistics()
+                {
+                    AllFlights = planes.Count(),
+                    AllPassengers = planes.Sum(x => x.PassengersAmount),
+                    AllCrew = planes.Sum(x => x.CrewAmount),
+                    AllRevenue = planes.Sum(x =>
+                    {
+                        var result = (x.PassengersAmount * x.PassengersFee + x.CrewAmount * x.CrewFee);
+                        return result * (x.Markup / 100) + result; // Добавление процента надбавки
+                    })
+                };
             }
             finally
             {
@@ -86,7 +98,7 @@ namespace AirportDataGridView.Services
         /// <summary>
         /// Обновление данных о полете
         /// </summary>
-        public async Task Update(Plane item, CancellationToken cancellationToken = default)
+        public async Task Update(Entities.Models.Plane item, CancellationToken cancellationToken = default)
         {
             var sw = Stopwatch.StartNew();
             try

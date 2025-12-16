@@ -26,7 +26,7 @@ namespace AirportDataGridView.App
 
             var loggerFactory = new SerilogLoggerFactory(Log.Logger, dispose: true);
 
-            var storage = new InMemoryStorage();
+            var storage = new DatabaseRepository();
             var service = new PlaneService(storage, loggerFactory);
 
             // To customize application configuration such as set high DPI settings or default font,

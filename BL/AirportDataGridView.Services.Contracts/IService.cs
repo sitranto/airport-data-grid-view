@@ -2,6 +2,9 @@
 
 namespace AirportDataGridView.Services.Contracts
 {
+    /// <summary>
+    /// Интерфейс сервиса
+    /// </summary>
     public interface IService
     {
         /// <summary>

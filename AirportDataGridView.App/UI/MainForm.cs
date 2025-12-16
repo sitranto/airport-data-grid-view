@@ -20,40 +20,48 @@ namespace AirportDataGridView.App.UI
         {
             InitializeComponent();
             planeService = storage;
-            planeService.Add(new Plane
-            {
-                FlightNum = 1,
-                PlaneType = PlaneType.Boing,
-                Arrive = DateTime.Now.AddDays(2),
-                PassengersAmount = 10,
-                PassengersFee = 5,
-                CrewAmount = 3,
-                CrewFee = 10,
-                Markup = 15
-            }, cancellationTokenSource.Token);
-            planeService.Add(new Plane
-            {
-                FlightNum = 2,
-                PlaneType = PlaneType.Airbus,
-                Arrive = DateTime.Now.AddDays(3),
-                PassengersAmount = 20,
-                PassengersFee = 6,
-                CrewAmount = 4,
-                CrewFee = 15,
-                Markup = 20
-            }, cancellationTokenSource.Token);
-            planeService.Add(new Plane
-            {
-                FlightNum = 3,
-                PlaneType = PlaneType.Oak,
-                Arrive = DateTime.Now.AddDays(4),
-                PassengersAmount = 30,
-                PassengersFee = 7,
-                CrewAmount = 5,
-                CrewFee = 20,
-                Markup = 25
-            }, cancellationTokenSource.Token);
             CountStatistics();
+        }
+
+        private async Task InitDataAsync()
+        {
+            var existingPlanes = await planeService.GetAll();
+            if (!existingPlanes.Any())
+            {
+                await planeService.Add(new Plane
+                {
+                    FlightNum = 1,
+                    PlaneType = PlaneType.Boing,
+                    Arrive = DateTime.Now.AddDays(2),
+                    PassengersAmount = 10,
+                    PassengersFee = 5,
+                    CrewAmount = 3,
+                    CrewFee = 10,
+                    Markup = 15
+                }, cancellationTokenSource.Token);
+                await planeService.Add(new Plane
+                {
+                    FlightNum = 2,
+                    PlaneType = PlaneType.Airbus,
+                    Arrive = DateTime.Now.AddDays(3),
+                    PassengersAmount = 20,
+                    PassengersFee = 6,
+                    CrewAmount = 4,
+                    CrewFee = 15,
+                    Markup = 20
+                }, cancellationTokenSource.Token);
+                await planeService.Add(new Plane
+                {
+                    FlightNum = 3,
+                    PlaneType = PlaneType.Oak,
+                    Arrive = DateTime.Now.AddDays(4),
+                    PassengersAmount = 30,
+                    PassengersFee = 7,
+                    CrewAmount = 5,
+                    CrewFee = 20,
+                    Markup = 25
+                }, cancellationTokenSource.Token);
+            }
         }
 
         private void OnCellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
@@ -88,7 +96,7 @@ namespace AirportDataGridView.App.UI
             if (bindingSource.Current is Plane plane)
             {
                 var entryForm = new EntryForm(plane);
-                if(entryForm.ShowDialog() == DialogResult.OK)
+                if (entryForm.ShowDialog() == DialogResult.OK)
                 {
                     await planeService.Update(entryForm.ResultEntry, cancellationTokenSource.Token);
                     OnUpdate();
@@ -123,7 +131,10 @@ namespace AirportDataGridView.App.UI
 
         private async void OnFormLoad(object sender, EventArgs e)
         {
-            bindingSource.DataSource = await planeService.GetAll(cancellationTokenSource.Token);
+            await InitDataAsync();
+
+            var planes = await planeService.GetAll(cancellationTokenSource.Token);
+            bindingSource.DataSource = planes.ToList();
 
             dataGridView.AutoGenerateColumns = false;
 
@@ -137,6 +148,13 @@ namespace AirportDataGridView.App.UI
             ColumnMarkup.DataPropertyName = nameof(Plane.Markup);
 
             dataGridView.DataSource = bindingSource;
+        }
+
+        private async void OnUpdateClick(object sender, EventArgs e)
+        {
+            var planes = await planeService.GetAll(cancellationTokenSource.Token);
+            bindingSource.DataSource = planes.ToList();
+            OnUpdate();
         }
     }
 }
