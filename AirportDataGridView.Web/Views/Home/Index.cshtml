@@ -1,0 +1,57 @@
+﻿@using AirportDataGridView.Entities.Models
+@using AirportDataGridView.Web.Models
+
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Рейсы самолетов";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Рейсы</h1>
+</div>
+
+<div style="margin-top: 30px;">
+    @if (Model.Planes.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Номер рейса</th>
+                    <th>Тип самолета</th>
+                    <th>Время прибытия</th>
+                    <th>Число пассажиров</th>
+                    <th>Надбавка на пассажира</th>
+                    <th>Число экипажа</th>
+                    <th>Надбавка на экипаж</th>
+                    <th>Процент надбавки</th>
+                    <th>Выручка</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var plane in Model.Planes)
+                {
+                    <tr>
+                        <td>@plane.FlightNum</td>
+                        <td>@plane.PlaneType</td>
+                        <td>@plane.Arrive</td>
+                        <td>@plane.PassengersAmount</td>
+                        <td>@plane.PassengersFee</td>
+                        <td>@plane.CrewAmount</td>
+                        <td>@plane.CrewFee</td>
+                        <td>@plane.Markup</td>
+                        <td>0</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            Рейсов нет. Нажмите "Добавить", чтобы добавить первый рейс
+        </div>
+    }
+</div>
