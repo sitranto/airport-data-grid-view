@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IStorage, InMemoryStorage>();
+builder.Services.AddScoped<IStorage, DatabaseRepository>();
 builder.Services.AddScoped<IService, PlaneService>();
 
 var app = builder.Build();

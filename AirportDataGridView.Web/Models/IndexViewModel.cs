@@ -2,9 +2,18 @@ using AirportDataGridView.Entities.Models;
 
 namespace AirportDataGridView.Web.Models;
 
+/// <summary>
+/// Модель представления для главной страницы
+/// </summary>
 public class IndexViewModel
 {
-    public IEnumerable<Plane> Planes { get; set; } = new List<Plane>();
+    /// <summary>
+    /// Коллекция рейсов для отображения на странице
+    /// </summary>
+    public IEnumerable<Plane> Planes { get; init; } = new List<Plane>();
     
-    public PlaneStatistics PlanesStatistics { get; set; } = new();
+    /// <summary>
+    /// Объект статистики, содержащий агрегированные данные по рейсам
+    /// </summary>
+    public PlaneStatistics PlanesStatistics { get; init; } = new();
 }

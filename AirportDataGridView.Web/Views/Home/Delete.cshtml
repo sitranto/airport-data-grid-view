@@ -1,0 +1,62 @@
+@model AirportDataGridView.Entities.Models.Plane
+
+@{
+    ViewData["Title"] = "Удаление рейса";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Удалить рейс</h1>
+</div>
+
+<div class="alert alert-warning" role="alert">
+    <h4>Вы уверены, что хотите удалить этот рейс?</h4>
+    <p>Это действие нельзя отменить.</p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4>Информация о рейсе</h4>
+                <hr />
+
+                <dl class="row">
+                    <dt class="col-sm-4">Номер рейса:</dt>
+                    <dd class="col-sm-8">@Model.FlightNum</dd>
+
+                    <dt class="col-sm-4">Тип самолета:</dt>
+                    <dd class="col-sm-8">@Model.PlaneType</dd>
+
+                    <dt class="col-sm-4">Время прибытия:</dt>
+                    <dd class="col-sm-8">@Model.Arrive</dd>
+
+                    <dt class="col-sm-4">Количество пассажиров:</dt>
+                    <dd class="col-sm-8">@Model.PassengersAmount</dd>
+
+                    <dt class="col-sm-4">Надбавка на пассажира:</dt>
+                    <dd class="col-sm-8">@Model.PassengersFee</dd>
+
+                    <dt class="col-sm-4">Количество экипажа:</dt>
+                    <dd class="col-sm-8">@Model.CrewAmount</dd>
+
+                    <dt class="col-sm-4">Надбавка на экипаж:</dt>
+                    <dd class="col-sm-8">@Model.CrewFee</dd>
+
+                    <dt class="col-sm-4">Процент надбавки:</dt>
+                    <dd class="col-sm-8">@Model.Markup</dd>
+                </dl>
+
+                <form asp-action="Delete" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                        <span style="margin: 0 8px;"></span>
+                        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
