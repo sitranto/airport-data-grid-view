@@ -1,0 +1,82 @@
+@model PlaneSaveViewModel
+
+@{
+    ViewData["Title"] = "Добавление рейса";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Добавить новый рейс</h1>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group mb-3">
+                        <label asp-for="FlightNum" class="form-label"></label>
+                        <input asp-for="FlightNum" class="form-control" />
+                        <span asp-validation-for="FlightNum" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="PlaneType" class="form-label"></label>
+                        <select asp-for="PlaneType" asp-items="Html.GetEnumSelectList<AirportDataGridView.Entities.Models.PlaneType>()" class="form-control">
+                        </select>
+                        <span asp-validation-for="PlaneType" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Arrive" class="form-label"></label>
+                        <input asp-for="Arrive" class="form-control" />
+                        <span asp-validation-for="Arrive" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="PassengersAmount" class="form-label"></label>
+                        <input asp-for="PassengersAmount" class="form-control" />
+                        <span asp-validation-for="PassengersAmount" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="PassengersFee" class="form-label"></label>
+                        <input asp-for="PassengersFee" class="form-control" type="number" min="1" step="0.1"/>
+                        <span asp-validation-for="PassengersFee" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="CrewAmount" class="form-label"></label>
+                        <input asp-for="CrewAmount" class="form-control" type="number" min="1" />
+                        <span asp-validation-for="CrewAmount" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="CrewFee" class="form-label"></label>
+                        <input asp-for="CrewFee" class="form-control" type="number" min="1" step="0.1" />
+                        <span asp-validation-for="CrewFee" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="Markup" class="form-label"></label>
+                        <input asp-for="Markup" class="form-control" type="number" min="1" step="0.1" />
+                        <span asp-validation-for="Markup" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <span style="margin: 0 8px;"></span>
+                        <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

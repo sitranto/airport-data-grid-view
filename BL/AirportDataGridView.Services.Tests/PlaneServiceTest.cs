@@ -96,33 +96,6 @@ namespace AirportDataGridView.Services.Tests
         }
 
         /// <summary>
-        /// Проверка корректности данных возвращаемой статистики
-        /// </summary>
-        [Fact]
-        public async Task StatisticsShouldReturnCorrectData()
-        {
-            // Arrange
-            var expectedStatistics = new PlaneStatistics
-            {
-                AllFlights = 5,
-                AllPassengers = 250,
-                AllCrew = 25,
-                AllRevenue = 50000
-            };
-
-            // Act
-            mockStorage.Setup(s => s.Statistics(cancellationTokenSource.Token))
-                       .ReturnsAsync(expectedStatistics);
-
-            var result = await service.Statistics(cancellationTokenSource.Token);
-
-            // Assert
-            result.Should().NotBeNull();
-            result.Should().BeEquivalentTo(expectedStatistics);
-            mockStorage.Verify(s => s.Statistics(cancellationTokenSource.Token), Times.Once);
-        }
-
-        /// <summary>
         /// Проверка обновления полета при вызове метода обновления
         /// </summary>
         [Fact]

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Context", "DAL\AirportDataGridView.Context\AirportDataGridView.Context.csproj", "{765575E9-C5A3-4428-B05E-096BFADAF235}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportDataGridView.Web", "AirportDataGridView.Web\AirportDataGridView.Web.csproj", "{757AA565-3F2D-47F5-BDB5-BB62829BD112}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{765575E9-C5A3-4428-B05E-096BFADAF235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{765575E9-C5A3-4428-B05E-096BFADAF235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{765575E9-C5A3-4428-B05E-096BFADAF235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757AA565-3F2D-47F5-BDB5-BB62829BD112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757AA565-3F2D-47F5-BDB5-BB62829BD112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757AA565-3F2D-47F5-BDB5-BB62829BD112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757AA565-3F2D-47F5-BDB5-BB62829BD112}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,131 @@
+﻿@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Рейсы самолетов";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Рейсы</h1>
+</div>
+
+<div style="margin-bottom: 10px;">
+    <a asp-action="Create" class="btn btn-outline-secondary">Добавить</a>
+    <span style="margin: 0 8px;"></span>
+    <a asp-action="Index" class="btn btn-outline-secondary">Обновить</a>
+</div>
+
+<div style="margin-top: 30px;">
+    @if (Model.Planes.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Номер рейса</th>
+                    <th>Тип самолета</th>
+                    <th>Время прибытия</th>
+                    <th>Число пассажиров</th>
+                    <th>Надбавка на пассажира</th>
+                    <th>Число экипажа</th>
+                    <th>Надбавка на экипаж</th>
+                    <th>Процент надбавки</th>
+                    <th>Выручка</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var plane in Model.Planes)
+                {
+                    var revenueWithoutMarkup = (plane.PassengersAmount * plane.PassengersFee + plane.CrewAmount * plane.CrewFee);
+                    var revenue = (revenueWithoutMarkup * plane.Markup) / 100 + revenueWithoutMarkup;
+
+                    <tr>
+                        <td>@plane.FlightNum</td>
+                        <td>@plane.PlaneType</td>
+                        <td>@plane.Arrive</td>
+                        <td>@plane.PassengersAmount</td>
+                        <td>@plane.PassengersFee</td>
+                        <td>@plane.CrewAmount</td>
+                        <td>@plane.CrewFee</td>
+                        <td>@plane.Markup</td>
+                        <td>@revenue</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            Рейсов нет. Нажмите "Добавить", чтобы добавить первый рейс
+            @Model.Planes.Count()
+        </div>
+    }
+</div>
+<div style="margin-top: 30px;">
+    
+    <div class="statistics-card" style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dee2e6;">
+        <h4>Статистика</h4>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <span class="stat-label">Прибывающие рейсы:</span>
+                    <span class="stat-value">@Model.PlanesStatistics.AllFlights</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <span class="stat-label">Количество пассажиров:</span>
+                    <span class="stat-value">@Model.PlanesStatistics.AllPassengers</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <span class="stat-label">Количество экипажа:</span>
+                    <span class="stat-value">@Model.PlanesStatistics.AllCrew</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <span class="stat-label">Выручка:</span>
+                    <span class="stat-value">@Model.PlanesStatistics.AllRevenue</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+            .stat-item {
+                padding: 10px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .stat-label {
+                display: block;
+                font-size: 0.9rem;
+                color: #6c757d;
+            }
+            .stat-value {
+                display: block;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #212529;
+            }
+            .badge {
+                font-size: 0.8em;
+                padding: 0.4em 0.8em;
+            }
+            .btn-group {
+                gap: 5px;
+            }
+            .table th {
+                background-color: #343a40;
+                color: white;
+                vertical-align: middle;
+            }
+            .table td {
+                vertical-align: middle;
+            }
+        </style>
+</div>
