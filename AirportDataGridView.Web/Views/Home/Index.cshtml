@@ -35,6 +35,9 @@
                 <tbody>
                 @foreach (var plane in Model.Planes)
                 {
+                    var revenueWithoutMarkup = (plane.PassengersAmount * plane.PassengersFee + plane.CrewAmount * plane.CrewFee);
+                    var revenue = (revenueWithoutMarkup * plane.Markup) / 100 + revenueWithoutMarkup;
+
                     <tr>
                         <td>@plane.FlightNum</td>
                         <td>@plane.PlaneType</td>
@@ -44,7 +47,7 @@
                         <td>@plane.CrewAmount</td>
                         <td>@plane.CrewFee</td>
                         <td>@plane.Markup</td>
-                        <td>0</td>
+                        <td>@revenue</td>
                     </tr>
                 }
                 </tbody>
